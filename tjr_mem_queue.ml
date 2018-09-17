@@ -14,7 +14,7 @@ let enqueue ~msg ~q =
 
 let dequeue ~q =
   Mutex.lock q.mutex;
-  while (Queue.is_empty q.q) do
+  while (Queue.is_empty q.q) do  (* NOTE loop is for multiple readers *)
     Condition.wait q.cvar q.mutex
   done;
   let msg = Queue.take q.q in

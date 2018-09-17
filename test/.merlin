@@ -1,2 +1,2 @@
-PKG tjr_mem_queue
+PKG tjr_mem_queue tjr_mem_queue_lwt lwt.unix
 FLG -thread

@@ -1,17 +1,17 @@
 set -a # export all vars
 # set -x # debug
 
-libname=tjr_mem_queue
-Libname=Tjr_mem_queue
+libname=tjr_mem_queue_lwt
+Libname=Tjr_mem_queue_lwt
 
 
 meta_description="tjr_mem_queue, an in-mem message queue for OCaml threads"
 
-# required_packages="stdlib" 
+required_packages="lwt" 
 
 # FIXME a bit inefficient if recalculating every time
 # mls=`ocamlfind ocamldep -package $required_packages -sort -one-line *.ml`
-mls=tjr_mem_queue.ml
+mls=tjr_mem_queue_lwt.ml
 
 natives=""
 bytes=""
@@ -32,8 +32,8 @@ function check_env_vars () {
 }
 check_env_vars
 
-# PKGS="-package $required_packages"
-PKGS="-I +threads"
+PKGS="-package $required_packages"
+# PKGS="-I +threads"
 
 
 # see https://caml.inria.fr/pub/docs/manual-ocaml/comp.html
@@ -58,7 +58,7 @@ function mk_cma() {
 }
 
 function mk_cmxa() {
-  $DISABLE_NTVE ocamlfind ocamlopt -g -a -o $libname.cmxa $cmxs *.o
+  $DISABLE_NTVE ocamlfind ocamlopt -g -a -o $libname.cmxa $cmxs # don't include .o, copy instead
 }
 
 
@@ -102,7 +102,7 @@ function clean() {
 # ocamlfind install, remove, reinstall --------------------
 
 function install() {
-	  ocamlfind install $libname META $libname.{cma,cmxa,a} *.cmt *.cmi
+	  ocamlfind install $libname META $libname.{cma,cmxa,a} *.cmx *.cmt *.cmi *.o
 }
 
 function remove() {
