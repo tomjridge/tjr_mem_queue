@@ -17,7 +17,7 @@ let dequeue ~q =
   while (Queue.is_empty q.q) do
     Condition.wait q.cvar q.mutex
   done;
-  let msg = Queue.take in
+  let msg = Queue.take q.q in
   Mutex.unlock q.mutex;
   msg
 
