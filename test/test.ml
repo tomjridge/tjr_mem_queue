@@ -7,7 +7,8 @@ let writer ~q =
          let rec loop () = 
            enqueue ~q ~msg:!n;
            n:=!n+1;
-           Thread.delay (Random.float 0.1);
+           (* Thread.delay (Random.float 0.1); *)
+           Thread.yield();
            loop ()
          in
          loop())
@@ -15,12 +16,13 @@ let writer ~q =
   in
   ()
 
-let reader ~q =
+let reader ~q ~n =
   let _ = Thread.create 
       (fun _ -> 
          let rec loop () =
-           let n : int = dequeue ~q in        
-           Printf.printf "Receiver got %d\n%!" n;
+           let n' : int = dequeue ~q in        
+           Printf.printf "Receiver got %d\n%!" n';
+           n:=!n+1;
            loop()
          in
          loop())
@@ -30,12 +32,17 @@ let reader ~q =
 
 let q = create ()
 
+let n = ref 0 
+
 let _ = 
   writer ~q;
   writer ~q;
   writer ~q;
-  reader ~q;
+  reader ~q ~n;
   Thread.delay 10.0
+
+let _ =
+  Printf.printf "Reader received a total of: %d\n%!" !n
 
 (*
 Local Variables:
