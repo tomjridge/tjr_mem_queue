@@ -21,7 +21,7 @@ let reader ~q ~n =
       (fun _ -> 
          let rec loop () =
            let n' : int = dequeue ~q in        
-           Printf.printf "Receiver got %d\n%!" n';
+           (* Printf.printf "Receiver got %d\n%!" n'; *)
            n:=!n+1;
            loop()
          in
@@ -43,6 +43,16 @@ let _ =
 
 let _ =
   Printf.printf "Reader received a total of: %d\n%!" !n
+
+(*
+Without printing:
+$ test $ ./test.native  
+Reader received a total of: 63351584
+
+This is for 10s, so 6M per second, or 1/6 * 10^-6 for each call
+*)
+
+
 
 (*
 Local Variables:
