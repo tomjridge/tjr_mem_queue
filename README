@@ -1,0 +1,6 @@
+A simple inter-thread messaging library. 
+
+Two versions: src is for OCaml threads; lwt is the same for Lwt.
+
+There are tests in test/. You need to build and install the libraries
+before building and running the tests.

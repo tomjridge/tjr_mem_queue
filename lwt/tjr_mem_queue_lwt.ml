@@ -8,7 +8,7 @@ type 'a queue = {
            
 
 let enqueue ~msg ~q =
-  Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock *)
+  Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock? but we signal later so we may need to hold the lock *)
   Queue.add msg q.q;
   Lwt_condition.signal q.cvar ();
   Lwt_mutex.unlock q.mutex;
@@ -16,7 +16,7 @@ let enqueue ~msg ~q =
 
 
 let dequeue ~q =
-  Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock *)
+  Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock? but we need to wait later *)
   let rec loop () = 
     if Queue.is_empty q.q 
     then Lwt_condition.wait ~mutex:q.mutex q.cvar >>= fun () -> loop ()

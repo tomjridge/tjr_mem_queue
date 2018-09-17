@@ -58,7 +58,7 @@ function mk_cma() {
 }
 
 function mk_cmxa() {
-  $DISABLE_NTVE ocamlfind ocamlopt -g -a -o $libname.cmxa $cmxs *.o
+  $DISABLE_NTVE ocamlfind ocamlopt -g -a -o $libname.cmxa $cmxs
 }
 
 
@@ -102,7 +102,7 @@ function clean() {
 # ocamlfind install, remove, reinstall --------------------
 
 function install() {
-	  ocamlfind install $libname META $libname.{cma,cmxa,a} *.cmt *.cmi
+	  ocamlfind install $libname META $libname.{cma,cmxa,a} *.cmx *.o *.cmt *.cmi
 }
 
 function remove() {
