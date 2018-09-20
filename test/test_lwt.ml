@@ -6,8 +6,11 @@ let writer ~q =
   let rec loop () = 
     enqueue ~q ~msg:!n >>= fun () ->
     n:=!n+1;
-    Lwt.pause () >>= fun () ->
-    loop ()
+    if !n mod 1000 = 0 then
+      Lwt.pause () >>= fun () ->
+      loop ()
+    else
+      loop ()
   in
   loop ()
 
