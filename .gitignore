@@ -1,3 +1,5 @@
 /tjr_mem_queue.install
 /lwt/.merlin
 /src/.merlin
+/src/lwt/.merlin
+/src/unix/.merlin
