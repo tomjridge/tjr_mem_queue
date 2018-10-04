@@ -1,4 +1,4 @@
-open Tjr_mem_queue
+open Tjr_mem_queue_unix.Tjr_mem_queue
 
 let writer ~q =
   let _ = Thread.create 
@@ -50,12 +50,4 @@ $ test $ ./test.native
 Reader received a total of: 63351584
 
 This is for 10s, so 6M per second, or 1/6 * 10^-6 for each call
-*)
-
-
-
-(*
-Local Variables:
-compile-command: "ocamlfind ocamlopt -thread -package tjr_mem_queue -linkpkg -o test.native test.ml"
-End:
 *)

@@ -1,5 +1,5 @@
 open Lwt.Infix
-open Tjr_mem_queue_lwt
+open Tjr_mem_queue.Tjr_mem_queue_lwt
 
 let writer ~q =
   let n = ref 0 in

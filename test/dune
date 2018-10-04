@@ -1,0 +1,9 @@
+(executable
+  (name test_unix)
+  (modules Test_unix)
+  (libraries tjr_mem_queue.unix))
+
+(executable
+  (name test_lwt)
+  (modules Test_lwt)
+  (libraries tjr_mem_queue))
