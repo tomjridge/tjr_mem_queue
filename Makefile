@@ -1,21 +1,13 @@
-all:
-	$(MAKE) build
-	$(MAKE) install
-	$(MAKE) clean
+DUNE:=opam exec dune
 
 build:
-	$(MAKE) -C src
-	$(MAKE) -C lwt
+	$(DUNE) build @install
 
 install:
-	$(MAKE) -C src install
-	$(MAKE) -C lwt install
+	$(DUNE) install
 
 uninstall:
-	$(MAKE) -C src uninstall
-	$(MAKE) -C lwt uninstall
+	$(DUNE) uninstall
 
 clean:
-	$(MAKE) -C src clean
-	$(MAKE) -C lwt clean
-	$(MAKE) -C test clean
+	$(DUNE) clean
