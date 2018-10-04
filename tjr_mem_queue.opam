@@ -18,5 +18,7 @@ depends: [
   "tjr_lib"
   "unix"
   "threads"
+  "lwt"
+  "lwt.unix"
 ]
 

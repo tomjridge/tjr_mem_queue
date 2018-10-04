@@ -3,3 +3,4 @@
 /src/.merlin
 /src/lwt/.merlin
 /src/unix/.merlin
+/test/.merlin
