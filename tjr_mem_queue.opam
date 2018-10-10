@@ -16,9 +16,7 @@ build: [
 
 depends: [
   "tjr_lib"
-  "unix"
-  "threads"
   "lwt"
-  "lwt.unix"
 ]
 
+# lwt.unix is an ocamlfind package; depends are opam packages?
