@@ -11,5 +11,15 @@ install:
 uninstall:
 	$(DUNE) uninstall
 
+doc: FORCE
+	$(DUNE) build @doc
+
+view_doc:
+	google-chrome  _build/default/_doc/_html/index.html
+
 clean:
 	$(DUNE) clean
+
+
+
+FORCE:
