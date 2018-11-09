@@ -1,11 +1,6 @@
 (* open Tjr_monad *)
 open Tjr_monad.Monad
 
-type ('msg,'q,'t) queue_ops = {
-  enqueue: msg:'msg -> q:'q -> (unit,'t)m;
-  dequeue: q:'q -> ('msg,'t)m;
-  create: unit -> ('q,'t)m;
-}
 
 type ('mutex,'cvar,'t) mutex_ops = {
   create_mutex: unit -> ('mutex,'t)m;
@@ -22,9 +17,16 @@ type ('mutex,'cvar,'a) queue = {
   mutex: 'mutex;
   cvar: 'cvar
 }
-           
 
-let make_ops ~monad_ops ~mutex_ops =
+(* NOTE could substitute 'q with ('mutex,'cvar,'msg) queue *)           
+type ('msg,'q,'t) queue_ops = {
+  enqueue: msg:'msg -> q:'q -> (unit,'t)m;
+  dequeue: q:'q -> ('msg,'t)m;
+  create: unit -> ('q,'t)m;
+}
+
+
+let make_ops ~monad_ops ~mutex_ops : ('msg,('mutex,'cvar,'msg)queue,'t) queue_ops =
   let ( >>= ) = monad_ops.bind in 
   let return = monad_ops.return in
   let {create_mutex;create_cvar;lock;signal;unlock;wait} = mutex_ops in
@@ -63,3 +65,14 @@ let make_ops ~monad_ops ~mutex_ops =
   in
 
   {enqueue;dequeue;create}
+
+
+(** Hide the ['mutex] and ['cvar] types *)
+module Make(S:sig
+type mutex
+type cvar
+end) = struct
+  open S
+  type 'msg qu = (mutex,cvar,'msg)queue
+  let make_ops ~monad_ops ~mutex_ops : ('msg, 'msg qu, 't) queue_ops = make_ops ~monad_ops ~mutex_ops
+end
