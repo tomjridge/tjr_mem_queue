@@ -1,6 +1,0 @@
-name="tjr_mem_queue"
-description="tjr_mem_queue, an in-mem message queue for OCaml threads"
-version="??"
-requires=""
-archive(byte)="tjr_mem_queue.cma"
-archive(native)="tjr_mem_queue.cmxa"

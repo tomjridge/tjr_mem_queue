@@ -6,4 +6,4 @@
 (executable
   (name test_lwt)
   (modules Test_lwt)
-  (libraries tjr_mem_queue))
+  (libraries tjr_mem_queue.lwt))
