@@ -7,27 +7,23 @@ type ('msg,'q,'t) queue_ops = {
   create: unit -> ('q,'t)m;
 }
 
-module Make(Required: sig
-type mutex
-type cvar
-type 't mutex_ops = {
-  create_mutex: unit -> (mutex,'t)m;
-  create_cvar: unit -> (cvar,'t)m;
-  lock : mutex -> (unit,'t)m;
-  signal: cvar -> (unit,'t)m;
-  unlock: mutex -> (unit,'t)m;
-  wait: mutex -> cvar -> (unit,'t)m;
+type ('mutex,'cvar,'t) mutex_ops = {
+  create_mutex: unit -> ('mutex,'t)m;
+  create_cvar: unit -> ('cvar,'t)m;
+  lock : 'mutex -> (unit,'t)m;
+  signal: 'cvar -> (unit,'t)m;  (* FIXME broadcast? *)
+  unlock: 'mutex -> (unit,'t)m;
+  wait: 'mutex -> 'cvar -> (unit,'t)m;
 }
-end) = struct
 
-open Required
 
-type 'a queue = {
+type ('mutex,'cvar,'a) queue = {
   q: 'a Queue.t;
-  mutex: mutex;
-  cvar: cvar
+  mutex: 'mutex;
+  cvar: 'cvar
 }
            
+
 let make_ops ~monad_ops ~mutex_ops =
   let ( >>= ) = monad_ops.bind in 
   let return = monad_ops.return in
@@ -67,5 +63,3 @@ let make_ops ~monad_ops ~mutex_ops =
   in
 
   {enqueue;dequeue;create}
-
-end
