@@ -1,5 +1,5 @@
 (* open Tjr_monad *)
-open Tjr_monad.Monad
+open Tjr_monad.Types
 
 
 type ('mutex,'cvar,'t) mutex_ops = {

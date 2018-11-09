@@ -1,4 +1,4 @@
 (library
   (name tjr_mem_queue_lwt)  
   (public_name tjr_mem_queue.lwt) ; or .lwt?
-  (libraries tjr_lib lwt lwt.unix))
+  (libraries lwt lwt.unix))

@@ -1,4 +1,4 @@
 (library
   (name tjr_mem_queue) 
   (public_name tjr_mem_queue)
-  (libraries tjr_lib tjr_monad))
+  (libraries tjr_monad))

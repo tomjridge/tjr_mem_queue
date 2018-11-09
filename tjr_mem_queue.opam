@@ -15,8 +15,8 @@ build: [
 ]
 
 depends: [
-  "tjr_lib"
   "lwt"
+  "tjr_monad"
 ]
 
 # lwt.unix is an ocamlfind package; depends are opam packages?
