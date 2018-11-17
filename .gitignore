@@ -4,3 +4,4 @@
 /src/lwt/.merlin
 /src/unix/.merlin
 /test/.merlin
+_build/
