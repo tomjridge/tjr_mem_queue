@@ -12,8 +12,9 @@ type ('mutex,'cvar,'t) mutex_ops = {
 }
 
 
+(** NOTE the q field contains a mutable queue *)
 type ('mutex,'cvar,'msg) queue = {
-  q: 'msg Queue.t;
+  q: 'msg Queue.t;  (* mutable!!!*)
   mutex: 'mutex;
   cvar: 'cvar
 }
