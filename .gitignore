@@ -5,3 +5,4 @@
 /src/unix/.merlin
 /test/.merlin
 _build/
+/dune-project
