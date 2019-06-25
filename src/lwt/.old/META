@@ -1,6 +1,0 @@
-name="tjr_mem_queue_lwt"
-description="tjr_mem_queue, an in-mem message queue for OCaml threads"
-version="??"
-requires="lwt"
-archive(byte)="tjr_mem_queue_lwt.cma"
-archive(native)="tjr_mem_queue_lwt.cmxa"

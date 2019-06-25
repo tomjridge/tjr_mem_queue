@@ -1,4 +1,0 @@
-(library
-  (name tjr_mem_queue_unix)
-  (public_name tjr_mem_queue.unix)
-  (libraries unix threads))

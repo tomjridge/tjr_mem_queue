@@ -1,4 +1,4 @@
-open Tjr_mem_queue_unix.Tjr_mem_queue
+open Tjr_mem_queue_unix.Internal
 
 let writer ~q =
   let _ = Thread.create 
@@ -20,7 +20,7 @@ let reader ~q ~n =
   let _ = Thread.create 
       (fun _ -> 
          let rec loop () =
-           let n' : int = dequeue ~q in        
+           let _n : int = dequeue q in        
            (* Printf.printf "Receiver got %d\n%!" n'; *)
            n:=!n+1;
            loop()

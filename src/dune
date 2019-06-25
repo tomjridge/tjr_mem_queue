@@ -1,3 +1,6 @@
+(env
+  (_ (flags (:standard -w -27-26 -open Tjr_monad))))
+   
 (library
   (name tjr_mem_queue) 
   (public_name tjr_mem_queue)

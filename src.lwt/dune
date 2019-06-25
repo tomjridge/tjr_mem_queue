@@ -1,0 +1,7 @@
+(env
+  (_ (flags (:standard -open Tjr_monad -open Tjr_mem_queue))))
+
+(library
+  (name tjr_mem_queue_lwt)  
+  (public_name tjr_mem_queue.lwt) ; or .lwt?
+  (libraries tjr_monad tjr_mem_queue lwt lwt.unix))

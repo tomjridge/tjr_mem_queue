@@ -1,5 +1,5 @@
 open Lwt.Infix
-open Tjr_mem_queue_lwt.Tjr_mem_queue
+open Tjr_mem_queue_lwt.Internal
 
 let writer ~q =
   let n = ref 0 in
@@ -16,7 +16,7 @@ let writer ~q =
 
 let reader ~q ~n =
   let rec loop () =
-    dequeue ~q >>= fun n' ->        
+    dequeue q >>= fun _n' ->        
     (* Printf.printf "Receiver got %d\n%!" n'; *)
     n:=!n+1;
     loop()
@@ -29,7 +29,7 @@ let n = ref 0
 
 let _ = 
   let writers = [writer ~q; writer ~q; writer ~q] in
-  let r = reader ~q ~n in
+  let _r = reader ~q ~n in
   let main = 
     Lwt_unix.sleep 10.0 >>= fun () ->
     List.map Lwt.cancel writers |> fun _ ->

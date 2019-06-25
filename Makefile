@@ -1,30 +1,17 @@
-DUNE:=opam exec dune
+TMP_DOC_DIR:=/tmp/tjr_mem_queue
+scratch:=/tmp/l/github/scratch
 
-build:
-	$(DUNE) build @install
-	$(DUNE) build test/test_lwt.exe
-	$(DUNE) build test/test_unix.exe
+default: all
 
-install:
-	$(DUNE) install
+test: FORCE
+	dune build test/test_lwt.exe test/test_unix.exe
 
-uninstall:
-	$(DUNE) uninstall
+run_tests: test
+	dune exec test/test_lwt.exe
+	dune exec test/test_unix.exe
 
-doc: FORCE
-	$(DUNE) build @doc
+-include Makefile.ocaml
 
-view_doc:
-	google-chrome  _build/default/_doc/_html/index.html
+# for auto-completion of Makefile target
+clean::
 
-
-run_tests:
-	$(DUNE) exec test/test_lwt.exe
-	$(DUNE) exec test/test_unix.exe
-
-clean:
-	$(DUNE) clean
-
-
-
-FORCE:
