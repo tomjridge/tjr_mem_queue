@@ -42,5 +42,5 @@ let make_lwt_memq_ops () = {
   memq_enqueue=(fun ~msg ~q -> enqueue ~msg ~q |> from_lwt) ;
   memq_dequeue=(fun q -> dequeue q |> from_lwt);
   memq_create=(fun () -> 
-      create () |> lwt_ops.return)
+      create () |> lwt_monad_ops.return)
 }
