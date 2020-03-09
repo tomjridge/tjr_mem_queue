@@ -21,9 +21,16 @@ before building and running the tests.
 
 Type `make` to build and install.
 
-Then type `make run_tests` to run the tests. The tests run the lwt and unix implementations for 10s, with 3 writers and a single reader. The result should look something like this:
+Then type `make run_tests` to run the tests. The tests run the lwt implementation for 10s, with 3 writers and a single reader. The result should look something like this:
 
-![2019-06-25.111318](README.assets/2019-06-25.111318.png)
+~~~
+make -k run_tests 
+dune build src-test/test_lwt.exe # src-test/test_unix.exe
+dune exec src-test/test_lwt.exe
+Reader received a total of: 59400000
+~~~
+
+<!-- ![2019-06-25.111318](README.assets/2019-06-25.111318.png) -->
 
 
 ## Dependencies

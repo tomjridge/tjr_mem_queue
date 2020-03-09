@@ -4,11 +4,11 @@ scratch:=/tmp/l/github/scratch
 default: all
 
 test: FORCE
-	dune build test/test_lwt.exe test/test_unix.exe
+	dune build src-test/test_lwt.exe # src-test/test_unix.exe
 
 run_tests: test
-	dune exec test/test_lwt.exe
-	dune exec test/test_unix.exe
+	dune exec src-test/test_lwt.exe
+#	dune exec src-test/test_unix.exe
 
 -include Makefile.ocaml
 
