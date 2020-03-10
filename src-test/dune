@@ -3,7 +3,7 @@
 ;;   (modules Test_unix)
 ;;   (libraries tjr_mem_queue.unix))
 
-(executable
-  (name test_lwt)
-  (modules Test_lwt)
+(executables
+  (names test_lwt_raw test_lwt_obj)
+;;  (modules Test_lwt)
   (libraries lwt.unix tjr_mem_queue))

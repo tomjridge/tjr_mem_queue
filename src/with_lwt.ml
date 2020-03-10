@@ -12,7 +12,9 @@ module Internal = struct
 
 
   let enqueue ~msg ~q =
-    Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock? but we signal later so we may need to hold the lock *)
+    (* unnecessary lock? but we signal later so we may need to hold
+       the lock *)
+    Lwt_mutex.lock q.mutex >>= fun () ->  
     Queue.add msg q.q;
     Lwt_condition.signal q.cvar ();
     Lwt_mutex.unlock q.mutex;
@@ -20,7 +22,8 @@ module Internal = struct
 
 
   let dequeue q =
-    Lwt_mutex.lock q.mutex >>= fun () ->  (* unnecessary lock? but we need to wait later *)
+    (* unnecessary lock? but we need to wait later *)
+    Lwt_mutex.lock q.mutex >>= fun () -> 
     let rec loop () = 
       if Queue.is_empty q.q 
       then Lwt_condition.wait ~mutex:q.mutex q.cvar >>= fun () -> loop ()
