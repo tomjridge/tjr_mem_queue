@@ -55,7 +55,9 @@ let make_as_object () : ('msg,lwt) memq_as_obj =
   let q = ref (create ()) in
   let enqueue msg = enqueue ~q:(!q) ~msg |> from_lwt in
   let dequeue () = dequeue (!q) |> from_lwt in
+  let len () = (!q).q |> Queue.length in
   object
     method enqueue=enqueue
     method dequeue=dequeue
+    method len=len
   end

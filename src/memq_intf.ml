@@ -32,4 +32,5 @@ type ('msg,'q,'t) memq_ops = {
 class type ['msg,'t] memq_as_obj = object
   method enqueue: 'msg -> (unit,'t)m
   method dequeue: unit -> ('msg,'t)m
+  method len: unit -> int
 end
