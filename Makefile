@@ -1,6 +1,3 @@
-TMP_DOC_DIR:=/tmp/tjr_mem_queue
-scratch:=/tmp/l/github/scratch
-
 default: all
 
 test: FORCE
