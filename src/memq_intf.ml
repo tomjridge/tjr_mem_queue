@@ -1,15 +1,5 @@
 (** Mem_queue interfaces; don't open *)
 
-(** What we need from mutexes and condition vars *)
-type ('mutex,'cvar,'t) mutex_ops = {
-  create_mutex : unit -> ('mutex,'t)m;
-  create_cvar  : unit -> ('cvar,'t)m;
-  lock         : 'mutex -> (unit,'t)m;
-  signal       : 'cvar -> (unit,'t)m;  (* FIXME broadcast? *)
-  unlock       : 'mutex -> (unit,'t)m;
-  wait         : 'mutex -> 'cvar -> (unit,'t)m;
-}
-
 
 (** The queue of messages. NOTE the q field contains a MUTABLE queue *)
 type ('mutex,'cvar,'msg) memq = {
