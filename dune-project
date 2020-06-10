@@ -13,4 +13,4 @@
 (package 
  (name tjr_mem_queue)
  (synopsis "Simple in-memory message queue")
- (depends lwt lwt.unix tjr_monad))
+ (depends lwt tjr_monad))

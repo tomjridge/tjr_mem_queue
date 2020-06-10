@@ -9,7 +9,6 @@ bug-reports: "https://github.com/tomjridge/tjr_btree/issues"
 depends: [
   "dune" {>= "2.0"}
   "lwt"
-  "lwt.unix"
   "tjr_monad"
 ]
 build: [
