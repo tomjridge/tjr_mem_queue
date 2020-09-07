@@ -6,7 +6,7 @@
 (maintainers          "Tom Ridge <tom.j.ridge@googlemail.com>")
 (source               (github tomjridge/tjr_btree))
 (homepage             https://github.com/tomjridge/tjr_mem_queue)
-(documentation        https://tomjridge.github.io/tjr_mem_queue)
+(documentation        https://tomjridge.github.io/ocamldocs)
 (generate_opam_files  true)
 
 
